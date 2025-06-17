@@ -102,6 +102,8 @@ função DELETE(tree, key):
 ## Insights do Benchmark da B‑Tree (Ordem 3)
 
 ### Inserção  
+
+![Inserção](desempenho_insercao.png)
 Logo no início sentimos uma verdadeira montanha‑russa de latências (até **~360 μs**), enquanto a árvore sobe de 1→2→3 níveis e faz vários splits.  
 Depois de **~20 000 tokens**, a profundidade estabiliza em **3–4 níveis**, e a maioria das inserções leva apenas **1–10 μs**.  
 Os picos seguem um ritmo quase musical — a cada **~6 inserções** num mesmo ramo (ORDER=3), um split acontece. No fim, o **custo médio** permanece quase constante.
