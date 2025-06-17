@@ -22,3 +22,15 @@ pip install pandas matplotlib
 # Gerar todos os gráficos
 python gerar_grafico.py
 ```
+## Estrutura do Projeto
+
+/
+├── btree2.c # Implementação em C da B‑Tree e benchmark
+├── blivre.txt # Arquivo de entrada (texto a ser indexado)
+├── insert_times.csv # Saída: tempos de inserção (μs)
+├── delete_times.csv # Saída: tempos de remoção (μs)
+├── gerar_grafico.py # Script em Python para gerar gráficos
+├── desempenho_insercao.png # Gráfico: inserção vs. tamanho
+├── desempenho_remocao.png # Gráfico: remoção vs. tamanho
+├── comparacao_desempenho.png # Gráfico comparativo
+└── tempo_acumulado.png # Gráfico de tempo total acumulado
