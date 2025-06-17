@@ -29,7 +29,7 @@ python gerar_grafico.py
 ├── blivre.txt # Arquivo de entrada (texto a ser indexado)
 ├── insert_times.csv # Saída: tempos de inserção (μs)
 ├── delete_times.csv # Saída: tempos de remoção (μs)
-├── gerar_grafico.py # Script em Python para gerar gráficos
+├── gerar_grafico.py # Python para gerar gráficos
 ├── desempenho_insercao.png # Gráfico: inserção vs. tamanho
 ├── desempenho_remocao.png # Gráfico: remoção vs. tamanho
 ├── comparacao_desempenho.png # Gráfico comparativo
