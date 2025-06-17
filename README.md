@@ -24,7 +24,7 @@ python gerar_grafico.py
 ```
 ## Estrutura do Projeto
 
-/
+```bash
 ├── btree2.c # Implementação em C da B‑Tree e benchmark
 ├── blivre.txt # Arquivo de entrada (texto a ser indexado)
 ├── insert_times.csv # Saída: tempos de inserção (μs)
@@ -34,3 +34,4 @@ python gerar_grafico.py
 ├── desempenho_remocao.png # Gráfico: remoção vs. tamanho
 ├── comparacao_desempenho.png # Gráfico comparativo
 └── tempo_acumulado.png # Gráfico de tempo total acumulado
+```
