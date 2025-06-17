@@ -98,3 +98,37 @@ função DELETE(tree, key):
     se tree.root.num_keys == 0:
         ajustar raiz (merge ou novo nó vazio)
 ```
+
+## Insights do Benchmark da B‑Tree (Ordem 3)
+
+### Inserção  
+Logo no início sentimos uma verdadeira montanha‑russa de latências (até **~360 μs**), enquanto a árvore sobe de 1→2→3 níveis e faz vários splits.  
+Depois de **~20 000 tokens**, a profundidade estabiliza em **3–4 níveis**, e a maioria das inserções leva apenas **1–10 μs**.  
+Os picos seguem um ritmo quase musical — a cada **~6 inserções** num mesmo ramo (ORDER=3), um split acontece. No fim, o **custo médio** permanece quase constante.
+
+### Remoção  
+O passeio aqui é mais suave: os maiores solavancos chegam a **~110 μs**, já que merges e redistribuições movem menos chaves que os splits.  
+Quase todas as remoções custam **1–5 μs** quando o nó ainda tem chaves de sobra. Os merges só ocorrem ao cair abaixo de **2 chaves**, tornando‑se eventos raros e espaçados.  
+Assim como na inserção, o **tempo médio por delete** é estável e previsível.
+
+### Tempo Acumulado  
+O gráfico de tempo acumulado revela como o custo total de inserir e depois remover cada token da Bíblia se comporta ao longo do benchmark:
+
+- **Inserção (linha azul):** cresce quase linearmente até cerca de **3,4 s** (3 400 000 μs) ao inserir todos os ~247 000 tokens.  
+- **Remoção (linha amarela):** decresce de forma simétrica (foi plotada “para baixo”), também somando perto de **3,4 s** ao esvaziar a árvore.  
+Isso confirma que o trabalho total de inserir e depois excluir a mesma quantidade de dados está na mesma ordem de grandeza — as inserções acabam um pouco mais “caras” no agregado por causa dos splits mais custosos.
+
+### Conclusão  
+- A B‑Tree de **ordem 3** entrega **latências baixíssimas** na maior parte das operações (tipicamente < 10 μs), com picos estruturais bem visíveis.  
+- O **custo amortizado** se mostra efetivamente **constante**, apesar de o pior‑caso ser O(log n).  
+- Inserções são ligeiramente mais pesadas que remoções, mas, no total, ambos os processos demandam esforços similares.  
+
+### Comportamento Amortizado  
+Apesar de alguns picos pontuais de latência, o **custo médio por operação** mantém‑se praticamente **constante**:
+
+- O pior‑caso teórico é **O(log n)**, mas, na prática, a B‑Tree “dilui” bem o esforço pesado.  
+- À medida que a árvore cresce, os picos de manutenção (splits e merges) ficam mais espaçados — é preciso inserir ou remover muito mais chaves no mesmo ramo para dispará‑los novamente.
+
+Esses resultados deixam claro por que a B‑Tree é tão eficiente para workloads de indexação e remoção em grandes volumes de dados sequenciais. 
+
+Desenvolvido por Gabriel Peixoto 
