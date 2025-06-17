@@ -105,10 +105,11 @@ função DELETE(tree, key):
 
 ![Inserção](desempenho_insercao.png)
 Logo no início sentimos uma verdadeira montanha‑russa de latências (até **~360 μs**), enquanto a árvore sobe de 1→2→3 níveis e faz vários splits.  
-Depois de **~20 000 tokens**, a profundidade estabiliza em **3–4 níveis**, e a maioria das inserções leva apenas **1–10 μs**.  
+Depois de **~200 000 tokens**, a profundidade estabiliza em **3–4 níveis**, e a maioria das inserções leva apenas **1–10 μs**.  
 Os picos seguem um ritmo quase musical — a cada **~6 inserções** num mesmo ramo (ORDER=3), um split acontece. No fim, o **custo médio** permanece quase constante.
 
-### Remoção  
+### Remoção 
+![Remoção](desempenho_remocao.png)
 O passeio aqui é mais suave: os maiores solavancos chegam a **~110 μs**, já que merges e redistribuições movem menos chaves que os splits.  
 Quase todas as remoções custam **1–5 μs** quando o nó ainda tem chaves de sobra. Os merges só ocorrem ao cair abaixo de **2 chaves**, tornando‑se eventos raros e espaçados.  
 Assim como na inserção, o **tempo médio por delete** é estável e previsível.
