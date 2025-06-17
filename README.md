@@ -115,8 +115,9 @@ Quase todas as remoções custam **1–5 μs** quando o nó ainda tem chaves d
 Assim como na inserção, o **tempo médio por delete** é estável e previsível.
 
 ### Tempo Acumulado  
-O gráfico de tempo acumulado revela como o custo total de inserir e depois remover cada token da Bíblia se comporta ao longo do benchmark:
 
+![Tempo Acumulado](tempo_acumulado.png)
+O gráfico de tempo acumulado revela como o custo total de inserir e depois remover cada token da Bíblia se comporta ao longo do benchmark.
 - **Inserção (linha azul):** cresce quase linearmente até cerca de **3,4 s** (3 400 000 μs) ao inserir todos os ~247 000 tokens.  
 - **Remoção (linha amarela):** decresce de forma simétrica (foi plotada “para baixo”), também somando perto de **3,4 s** ao esvaziar a árvore.  
 Isso confirma que o trabalho total de inserir e depois excluir a mesma quantidade de dados está na mesma ordem de grandeza — as inserções acabam um pouco mais “caras” no agregado por causa dos splits mais custosos.
