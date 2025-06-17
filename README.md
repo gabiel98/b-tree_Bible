@@ -12,3 +12,13 @@ gcc btree.c -o btree
 
 # Executar (gera insert_times.csv e delete_times.csv lendo 'blivre.txt')
 ./btree
+```
+### 2. Gerar Gráficos com Python
+
+```bash
+# Instale as dependências (pandas, matplotlib)
+pip install pandas matplotlib
+
+# Gerar todos os gráficos
+python gerar_grafico.py
+```
